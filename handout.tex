@@ -16,13 +16,18 @@
 	\newpage
 
 	\section{Motivation für Hashing im Allgemeinen}
+	Bevor ich erkläre, wie die Secure-Hashing-Algorithmen 1-3 funktionieren möchte ich eine kurze Einführung darüber geben, warum  das Konzept des Hashings überhaupt entwickelt wurde. Hierzu werde ich in den kommenden Abschnitten die Konzepte vorstellen, mit dessen Hilfe eine Nachricht von einem Sender an einen Empfänger authentifiziert als auch signiert werden kann. Aus diesem Grund werde ich kurz auf das Konzept der asymmetrischen Verschlüsselung eingehen. Einer der bekanntesten Vertreter dieser Verschlüsselungsalgorithmen ist der RSA-Algorithmus, welcher von den drei Mathematikern Ronald Linn Rivest, Adi Shamir und Leonard Adleman entwickelt wurde und nach diesen benannt ist. Danach werde ich Anforderungen an einen Secure-Hashing-Algorithmus präsentieren und im Anschluss näher auf die Secure-Hashing-Algorithmen SHA-1, SHA2, und SHA-3 eingehen.
+	Damit aber jeder Leser dieses Handouts das selbe Verständnis einiger Begriffe hat, welche ich in diesem Dokument verwende, folgen zunächst einige Begriffserklärungen:
 	\subsection{Begriffsklärungen}
-	\subsubsection{Kryptographie}
+	Im Folgenden werde ich oft von einem Sender Empfänger und einem Mittelsmann mit böswilligen Absichten sprechen. Damit Sachzusammenhänge zwischen diesen anschaulicher werden, werde ich (in Anlehnung an die Erfinder des RSA-Algorithmus) den Sender von nun an \textit{Ronald}, den Empfänger \textit{Adi} und den Mittelsmann \textit{Leonard} nennen.
 	\subsubsection{Authentifikation}
-	\subsubsection{Zertifizierung}
-	\subsubsection{infeasable (TODO)}
+	Stellen wir uns folgendes Szenario vor:
+	Ronald versendet über einen beliebigen Kanal eine Nachricht an Adi. Der Nachrichtenkanal kann beispielsweise das Kabel sein. Schafft es jetzt Leonard nun sich irgendwie an dieses Kabel anzuschließen, so könnte er die versendete Nachricht abhören (dies wird unter anderem auch \textit{wiretrapping} genannt). Gerade, wenn die Nachricht vertrauliche Daten enthält ist das natürlich höchst unerfreulich. Möglicherweise schlimmer wäre aber, wenn Leonard es schafft, in die Nachricht eine eigene Nachricht einzuspeisen (\textit{engl. to inject)}. Dieser Eingriff wäre unserem Empfänger Adi nicht bekannt und er geht fälschlicherweise davon aus, die veruntreute Nachricht von Ronald erhalten zu haben. Mit ein wenig Fantasie kann man sich nun vorstellen, welche Konsequenzen das haben kann. Es ist also unglaublich wichtig, einen Überprüfungsmechanismus zu haben, welcher sicherstellt, dass die empfangene Nachricht auch jene ist, welche versendet wurde. Gesucht ist also ein Algorithmus, welcher die \textbf{Richtigkeit} (also die \textit{Authentizität}) einer Nachricht bezeugt. Dieser Mechanismus ist die \textit{Authentifizierung}.
+	\subsubsection{Digitale Signatur}
+	Unterschreibt Ronald handschriftlich eine (analoge) Nachricht, so dient die Unterschrift dazu, dem Adi zu versichern, dass er der Verfasser dieser Nachricht ist. Das Problem hierbei ist, dass Adi mit dem Empfangen der Nachricht nicht nur die Nachricht sondern auch die Unterschrift empfangen hat. Hätte Adi nun böswillige Absichten, könnte er die Unterschrift verwenden, um sich beim Versenden einer eigenen Nachricht selbst als Ronald auszugeben. Gewissermaßen ist die einzige "Verschlüsselung" der Unterschrift, Ronalds Handschrift, welche Adi im besten Fall nicht nachahmen kann. Außerdem verwendet Ronald für alle Nachrichten die selbe Unterschrift, nämlich seine eigene. Selbst wenn er diese auf irgendeine Weise verschlüsselt, so kann Adi einfach die verschlüsselte Unterschrift verwenden und das Problem bleibt weiterhin verstehen. Grund dafür ist, dass die Unterschrift in keiner Weise von dem Inhalt der Nachricht abhängt.  Gerade in der Welt des Internets, in welcher am laufenden Band (höchst vertrauliche) Nachrichten unterzeichnet werden ist ein solches Vorgehen für digitale Signaturen viel zu unsicher!
+	Eine \textit{digitale Signatur} ist also die Möglichkeit einem Empfänger einer Nachricht zu versichern, dass der Sender dieser Nachricht auch der Verfasser dieser ist, ohne die Unterschrift in leserlicher Form mit zu versenden. Die Signatur sollte also mithilfe eines Schlüssels verschlüsselt werden, den nur der Sender kennt. Außerdem sollte die Signatur vom Inhalt der Nachricht abhängen, damit der Empfänger diese nicht für etwaige weitere Nachrichten verwenden kann.
 	\subsection{Asymetrische Verschlüsselung}
-	\subsection{Wie funktionieren Authentifizierung und Zertifizierung?}
+	\subsection{Die Konzepte der Authentifizierung und der digitalen Signatur}
 	\subsection{Probleme von RSA}
 	\section{Anforderungen an einen Secure-Hashing-Algorithmus}
 	\section{SHA-1}
@@ -30,7 +35,7 @@
 	\section{SHA-3}
 	\section{SHA 1-3 heute}
 	\section{Fazit}
-	\section{	Quellen}
+	\section{Quellen}
 
 
 \end{document}
